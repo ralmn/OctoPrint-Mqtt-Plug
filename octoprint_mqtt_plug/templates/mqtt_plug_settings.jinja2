@@ -1,0 +1,63 @@
+<div id="form_mqtt_plug">
+    <div data-bind="visible: settings.loginState.hasPermission(settings.access.permissions.PLUGIN_MQTT_PLUG_ADMIN)">
+        <h1>{{ _("General configuration") }}</h1>
+
+        <form class="form-horizontal" autocomplete="off">
+
+        </form>
+
+
+
+        <h1>{{ _("Outlet / Light") }}</h1>
+
+        <table class="table" >
+            <thead>
+            <tr>
+                <th>{{ _("Name") }}</th>
+                <th>{{ _("Actions") }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--ko foreach: settings.settings.plugins.mqtt_plug.devices-->
+            <tr data-bind="">
+                <td data-bind="text: $data.name"></td>
+                <td>
+                    <a href="#" data-bind="click: function(data, event) {$parent.showDeviceDialogEdit(data) }"><i title="{{ _("Edit") }}" class="fa fa-pencil"></i></a>
+                    <a href="#" data-bind="click: function(data, event) { $parent.deleteDevice(data);  }"><i title="{{ _("Delete") }}" class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+            <!--/ko-->
+            </tbody>
+        </table>
+
+        <div data-bind="visible: reloadRequired" class="alert alert-danger" role="alert">
+          {{ _("Reload required (F5) !") }}
+        </div>
+
+        <a href="#" class="btn btn-primary" data-bind="click: showDeviceDialogNew"><i class="fa fa-add"></i>{{ _("Add device") }}</a>
+
+    </div>
+
+    <div data-bind="visible: !settings.loginState.hasPermission(settings.access.permissions.PLUGIN_MQTT_PLUG_ADMIN)">
+        <p>{{ _("You don't have permissions to edit settings") }}</p>
+    </div>
+
+    <div class="modal fade hide" id="mqtt_plug_device_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    {% include "mqtt_plug_dialog_device.jinja2" %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ _("Cancel") }}</button>
+                    <button type="button" class="btn btn-primary" data-bind="click: saveDeviceDialog">{{ _("Save") }}</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+

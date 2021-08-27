@@ -1,0 +1,130 @@
+<form class="form-horizontal" autocomplete="off">
+    <h2>{{ _("Device configuration") }}</h2>
+
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Device name') }}</label>
+        <div class="controls">
+            <input type="text" class="input-block-level" name="deviceName">
+        </div>
+    </div>
+
+    <h2>{{ _("MQTT configuration") }}</h2>
+
+    <div class="control-group">
+        <label for="" class="control-label">{{ _('State topic') }}</label>
+        <div class="controls">
+            <input type="text" name="stateTopic">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label for="" class="control-label">{{ _('Switch topic') }}</label>
+        <div class="controls">
+            <input type="text" name="switchTopic">
+        </div>
+    </div>
+
+    <h2>{{ _("Event configuration") }}</h2>
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Turn off outlet when print succeeded') }}</label>
+        <div class="controls">
+            <input type="checkbox" id="plugins_mqtt_plug_on_done" name="on_done" class="input-block-level">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Turn off outlet when print failed/canceled') }}</label>
+        <div class="controls">
+            <input type="checkbox" id="plugins_mqtt_plug_on_failed" name="on_failed" class="input-block-level">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Turn off mode') }}</label>
+        <div class="controls">
+            <select name="turn_off_mode" id="plugins_mqtt_plug_turn_off_mode"
+                    data-bind="event: {change: dialogOnTurnOffModeChange}">
+                <option value="time">{{ _('Time') }}</option>
+                <option value="cooldown">{{ _('Cooldown') }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="control-group" id="plugins_mqtt_plug_grp_stop_timer">
+        <label class="control-label">{{ _('Delay before turn off (in seconds)') }}</label>
+        <div class="controls">
+            <input type="number" min="-1" class="input-block-level" name="stop_timer">
+            <p><small>{{ _("-1 for disabled") }}</small></p>
+        </div>
+    </div>
+
+    <div class="control-group" id="plugins_mqtt_plug_grp_postpone_delay">
+        <label class="control-label">{{ _('Postpone delay (in seconds)') }}</label>
+        <div class="controls">
+            <input type="number" min="1" class="input-block-level" name="postpone_delay">
+        </div>
+    </div>
+
+    <div class="control-group" id="plugins_mqtt_plug_grp_cooldown_hotend">
+        <label class="control-label">{{ _('Hotend temperature') }}</label>
+        <div class="controls">
+            <input type="number" min="-1" class="input-block-level" name="cooldown_hotend">
+        </div>
+    </div>
+
+    <div class="control-group" id="plugins_mqtt_plug_grp_cooldown_bed">
+        <label class="control-label">{{ _('Bed temperature') }}</label>
+        <div class="controls">
+            <input type="number" min="1" class="input-block-level" name="cooldown_bed">
+            <p><small>{{ _("-1 for disabled") }}</small></p>
+        </div>
+    </div>
+
+    <h2>{{ _("Auto connect") }}</h2>
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Delay for auto connect (in seconds)') }}</label>
+        <div class="controls">
+            <input type="number" min="-1" class="input-block-level" name="connection_timer">
+            <p><small>{{ _("-1 for disabled") }}</small></p>
+        </div>
+    </div>
+
+    {% if plugin_mqtt_plug_hasPalette2 %}
+        <div class="control-group">
+            <label class="control-label">{{ _('Auto connect palette 2 instead of printer') }}</label>
+            <div class="controls">
+                <input type="checkbox" class="input-block-level" name="connect_palette2">
+            </div>
+        </div>
+    {% endif %}
+
+    <h2>{{ _("UI") }}</h2>
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Navbar icon') }}</label>
+        <div class="controls">
+            <input type="text" id="plugins_mqtt_plug_icon" class="input-block-level" name="icon">
+            <p><small><a target="_blank"
+                         href="https://fontawesome.com/v4.7.0/icons/"> {{ _("Icons list") }} </a></small></p>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Navbar show icon') }}</label>
+        <div class="controls">
+            <input type="checkbox" id="plugins_mqtt_plug_nav_icon" class="input-block-level" name="nav_icon">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Navbar show name') }}</label>
+        <div class="controls">
+            <input type="checkbox" id="plugins_mqtt_plug_nav_name" class="input-block-level" name="nav_name">
+        </div>
+    </div>
+
+</form>
+

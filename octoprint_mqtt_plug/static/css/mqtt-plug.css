@@ -1,0 +1,20 @@
+.state.state-on {
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    bottom: 8px;
+    left: 28px;
+    background-color: #029927;
+    border-radius: 8px;
+}
+
+.state-icon.state-on {
+    color: #029927;
+}
+.state-icon.state-off {
+    color: #990202;
+}
+
+.navbar_plugin_mqtt_plug_hidden {
+    display: none;
+}

@@ -1,0 +1,19 @@
+<!-- ko if: dev-->
+<a href="javascript:void(0)" title="MQTT Plug"
+   class="dropdown-toggle" data-toggle="dropdown">
+    <!-- ko if: dev.showNavbarName-->
+    <span data-bind="text:dev.name"></span>
+    <!--/ko-->
+    <!-- ko if: dev.showNavbarIcon -->
+    <i data-bind="attr: {'class': iconClass(dev), 'title': dev.name}"></i>
+    <!--/ko-->
+    <b class="caret"></b>
+</a>
+<ul class="dropdown-menu">
+    <li><a class="action_plugin_mqtt_plug" href="javascript:void(0)"
+           data-bind="click: turnOn.bind($data, dev)">{{ _("Turn on outlet") }}</a></li>
+    <li><a class="action_plugin_mqtt_plug" href="javascript:void(0)"
+           data-bind="click: turnOff.bind($data, dev)">{{ _("Turn off outlet") }}</a></li>
+
+</ul>
+<!--/ko-->
