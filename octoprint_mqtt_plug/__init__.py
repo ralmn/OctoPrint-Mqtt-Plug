@@ -358,7 +358,7 @@ class MqttPlugPlugin(
 
     def getDeviceFromId(self, id) -> Device or None:
         selected_devices = self.devices
-        if id is None:
+        if id is None or id == '-1':
             return None
         if type(id) == str:
             id = uuid.UUID(id)

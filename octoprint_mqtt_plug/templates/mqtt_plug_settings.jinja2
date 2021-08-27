@@ -20,7 +20,7 @@
             <tbody>
             <!--ko foreach: settings.settings.plugins.mqtt_plug.devices-->
             <tr data-bind="">
-                <td data-bind="text: $data.name"></td>
+                <td data-bind="text: $data.deviceName"></td>
                 <td>
                     <a href="#" data-bind="click: function(data, event) {$parent.showDeviceDialogEdit(data) }"><i title="{{ _("Edit") }}" class="fa fa-pencil"></i></a>
                     <a href="#" data-bind="click: function(data, event) { $parent.deleteDevice(data);  }"><i title="{{ _("Delete") }}" class="fa fa-trash"></i></a>

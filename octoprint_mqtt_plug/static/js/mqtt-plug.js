@@ -204,21 +204,26 @@ $(function () {
             self.getDevices();
 
             let dialog = $('#mqtt_plug_device_modal');
-            dialog.find('[name="device_name"]').val(device.name());
+            //debugger;
+            dialog.find('[name="deviceName"]').val(device.deviceName());
             dialog.find('[name="device_id"]').val(device.id());
-            dialog.find('[name="on_done"]').prop('checked', device.on_done());
-            dialog.find('[name="on_failed"]').prop('checked', device.on_failed());
-            dialog.find('[name="stop_timer"]').val(device.stop_timer());
-            dialog.find('[name="postpone_delay"]').val(device.postpone_delay());
-            dialog.find('[name="connection_timer"]').val(device.connection_timer());
+
+            dialog.find('[name="stateTopic"]').val(device.stateTopic());
+            dialog.find('[name="switchTopic"]').val(device.switchTopic())
+
+            dialog.find('[name="on_done"]').prop('checked', device.onDone());
+            dialog.find('[name="on_failed"]').prop('checked', device.onFailed());
+            dialog.find('[name="stop_timer"]').val(device.stopDelay());
+            dialog.find('[name="postpone_delay"]').val(device.postponeDelay());
+            dialog.find('[name="connection_timer"]').val(device.connectionDelay());
             dialog.find('[name="icon"]').val(device.icon());
-            dialog.find('[name="nav_icon"]').prop('checked', device.nav_icon());
-            dialog.find('[name="nav_name"]').prop('checked', device.nav_name());
-            dialog.find('[name="connect_palette2"]').prop('checked', device.connect_palette2 && device.connect_palette2());
+            dialog.find('[name="nav_icon"]').prop('checked', device.showNavbarIcon());
+            dialog.find('[name="nav_name"]').prop('checked', device.showNavbarName());
+            dialog.find('[name="connect_palette2"]').prop('checked', device.connectPalette2());
 
             dialog.find('[name="turn_off_mode"]').val(device.shutdownType());
-            dialog.find('[name="cooldown_bed"]').val(device.cooldown_bed());
-            dialog.find('[name="cooldown_hotend"]').val(device.cooldown_hotend());
+            dialog.find('[name="cooldown_bed"]').val(device.bedTemp());
+            dialog.find('[name="cooldown_hotend"]').val(device.hotendTemp());
 
             self.dialogOnTurnOffModeChange();
 
@@ -269,8 +274,8 @@ $(function () {
 
         self.extractDeviceDialogData = function (dialog) {
             let device = {
-                name: dialog.find('[name="device_name"]').val(),
-                id: parseInt(dialog.find('[name="device_id"]').val()),
+                deviceName: dialog.find('[name="deviceName"]').val(),
+                id: dialog.find('[name="device_id"]').val(),
                 stateTopic: dialog.find('[name="stateTopic"]').val(),
                 switchTopic: dialog.find('[name="switchTopic"]').val(),
                 // onValue: dialog.find('[name="onValue"]').val(),
@@ -313,7 +318,7 @@ $(function () {
                 }
                 if (currentDevice) {
                     self.settings.settings.plugins.mqtt_plug.devices.replace(currentDevice, deviceObs);
-                    if (currentDevice.nav_icon() != deviceObs.nav_icon() || currentDevice.nav_name() != deviceObs.nav_name()) {
+                    if (currentDevice.showNavbarIcon() != deviceObs.showNavbarIcon() || currentDevice.showNavbarName() != deviceObs.showNavbarName()) {
                         self.reloadRequired(true);
                     }
                 } else {

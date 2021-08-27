@@ -13,8 +13,11 @@ class Device:
 
     def __init__(self, data):
         id = loadFromDict(data, "id", uuid.uuid4())
-        if type(id) == str:
+        if id == "-1":
+            id = uuid.uuid4()
+        elif type(id) == str:
             id = uuid.UUID(id)
+
         self.id = id
 
         self.deviceName = loadFromDict(data, "deviceName", "New device")
@@ -50,7 +53,7 @@ class Device:
         for k in data:
             if k == "id":
                 continue
-            self[k] = data[k]
+            setattr(self, k, data[k])
 
     def serialize(self):
         return dict(
