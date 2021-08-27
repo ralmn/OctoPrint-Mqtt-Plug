@@ -307,7 +307,7 @@ class MqttPlugPlugin(
         connection_timer = int(device.connectionDelay)
 
         def connect():
-            if device['connect_palette2']:
+            if device.connectPalette2:
                 self.connect_palette2()
             else:
                 self._printer.connect()
@@ -459,9 +459,12 @@ class MqttPlugPlugin(
     @octoprint.plugin.BlueprintPlugin.route("/sidebar/postpone", methods=["POST"])
     def sidebarPostponeShutdown(self):
         dev = flask.request.json['dev']
-        self.planStop(dev, True)
 
-        self._send_message("sidebar", self.sidebarInfoData())
+        device = self.getDeviceFromId(dev['id'])
+
+        if device is not None:
+            self.planStop(device, True)
+            self._send_message("sidebar", self.sidebarInfoData())
 
         return self.sidebarInfo()
 

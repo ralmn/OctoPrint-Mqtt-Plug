@@ -3,8 +3,8 @@
     <h4 data-bind="text:$data.name"></h4>
     <div data-bind="visible: $data.shutdownType() == 'cooldown'">
         <div data-bind="visible: $parent.sidebarInfoCooldownPlanned($data)">
-            <p data-bind="visible: $data.cooldown_hotend()  > -1">{{ _("Waiting hotend cooldown at")}} <span data-bind="text: $data.cooldown_hotend"></span>°C</p>
-            <p data-bind="visible: $data.cooldown_bed() > -1">{{ _("Waiting bed cooldown at")}} <span data-bind="text: $data.cooldown_bed"></span>°C</p>
+            <p data-bind="visible: $data.hotendTemp()  > -1">{{ _("Waiting hotend cooldown at")}} <span data-bind="text: $data.hotendTemp"></span>°C</p>
+            <p data-bind="visible: $data.bedTemp() > -1">{{ _("Waiting bed cooldown at")}} <span data-bind="text: $data.bedTemp"></span>°C</p>
             <button class="btn btn-secondary" data-bind="enable: !$parent.printer.isPrinting(), click: $parent.cancelShutdown">{{_("Cancel scheduled shutdown")}}</button>
         </div>
         <div data-bind="visible: !$parent.sidebarInfoCooldownPlanned($data)">
@@ -14,13 +14,13 @@
     </div>
     <div data-bind="visible: $parent.sidebarInfoShutdownPlanned($data)">
         <p>Shutdown planned at <span data-bind="text: $parent.sidebarShutdownAt($data)"></span></p>
-        <button class="btn btn-secondary" data-bind="enable: !$parent.printer.isPrinting(), click: $parent.postponeShutdown">{{_("Postpone shutdown for ")}} <span data-bind="text: $data.postpone_delay"></span> secs</button>
+        <button class="btn btn-secondary" data-bind="enable: !$parent.printer.isPrinting(), click: $parent.postponeShutdown">{{_("Postpone shutdown for ")}} <span data-bind="text: $data.postponeDelay"></span> secs</button>
         <button class="btn btn-secondary" data-bind="enable: !$parent.printer.isPrinting(), click: $parent.cancelShutdown">{{_("Cancel scheduled shutdown")}}</button>
         <button class="btn btn-secondary" data-bind="enable: !$parent.printer.isPrinting(), click: $parent.shutdownNow">{{_("Shutdown now")}}</button>
     </div>
     <div data-bind="visible: !$parent.sidebarInfoShutdownPlanned($data)">
         <p>{{ _('No time shutdown planned')}}</p>
-        <button class="btn btn-secondary" data-bind="enable: !$parent.printer.isPrinting(), click: $parent.postponeShutdown">{{_("Scheduled shutdown in")}} <span data-bind="text: $data.postpone_delay"></span> secs</button>
+        <button class="btn btn-secondary" data-bind="enable: !$parent.printer.isPrinting(), click: $parent.postponeShutdown">{{_("Scheduled shutdown in")}} <span data-bind="text: $data.postponeDelay"></span> secs</button>
         <button class="btn btn-secondary" data-bind="enable: !$parent.printer.isPrinting(), click: $parent.shutdownNow">{{_("Shutdown now")}}</button>
     </div>
     <!--/ko-->
