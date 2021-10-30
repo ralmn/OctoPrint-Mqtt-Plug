@@ -344,6 +344,7 @@ class MqttPlugPlugin(
             return
 
         self._logger.debug('stop')
+        self._printer.disconnect()
         self.turnOffOutlet(device)
         self._send_message("navbar", self.navbarInfoData())
 
