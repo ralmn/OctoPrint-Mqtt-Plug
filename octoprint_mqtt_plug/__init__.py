@@ -474,13 +474,15 @@ class MqttPlugPlugin(
         dev = flask.request.json['dev']
         device = self.getDeviceFromId(dev['id'])
 
-        if device.id in self.stopTimer and self.stopTimer[str(device.id)] is not None:
-            self.shutdownAt[str(device.id)] = None
-            self.stopTimer[str(device.id)].cancel()
-            self.stopTimer[str(device.id)] = None
-        if device.id in self.stopCooldown and self.stopCooldown[str(device.id)] is not None:
-            self.stopCooldown[str(device.id)].cancel()
-            self.stopCooldown[str(device.id)] = None
+        if str(dev['id']) in self.stopTimer and self.stopTimer[str(dev['id'])] is not None:
+            self.stopTimer[str(dev['id'])].cancel()
+            self.shutdownAt[str(dev['id'])] = None
+            self.stopTimer[str(dev['id'])] = None
+        if str(dev['id']) in self.stopCooldown and self.stopCooldown[str(dev['id'])] is not None:
+            self.stopCooldown[str(dev['id'])].cancel()
+            self.shutdownAt[str(dev['id'])] = None
+            self.stopCooldown[str(dev['id'])] = None
+
         self._send_message("sidebar", self.sidebarInfoData())
         return self.sidebarInfo()
 
