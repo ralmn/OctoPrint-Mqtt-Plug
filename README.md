@@ -14,10 +14,6 @@ Install manually using this URL:
 
     https://github.com/ralmn/OctoPrint-Mqtt-Plug/archive/master.zip
 
-
 ## Configuration
 
 Follow setup wizard or go to OctoPrint settings
-
-
-
