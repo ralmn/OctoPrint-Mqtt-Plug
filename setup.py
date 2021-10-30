@@ -14,7 +14,7 @@ plugin_package = "octoprint_mqtt_plug"
 plugin_name = "OctoPrint Mqtt plug"
 
 # The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
-plugin_version = "1.0.0-dev2"
+plugin_version = "1.0.0-dev3"
 
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
