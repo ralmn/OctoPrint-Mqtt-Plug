@@ -212,7 +212,7 @@ class MqttPlugPlugin(
                 user="ralmn",
                 repo="OctoPrint-Mqtt-Plug",
                 current=self._plugin_version,
-
+                prerelease=True,
                 stable_branch=dict(
                     name="Stable", branch="master", comittish=["master"]
                 ),
